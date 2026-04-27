@@ -103,13 +103,25 @@ nav {
 /* Theme toggle */
 #theme-btn {
   position: relative;
-  width: 44px; height: 24px;
+  width: 52px; height: 24px;
   border-radius: 100px;
   border: 1px solid var(--border);
   background: var(--surface);
   transition: background var(--transition), border-color var(--transition);
   flex-shrink: 0;
   padding: 0;
+  overflow: hidden;
+}
+#theme-btn::before {
+  content: '☀';
+  position: absolute;
+  top: 50%; right: 5px;
+  transform: translateY(-50%);
+  font-size: .7rem;
+  line-height: 1;
+  color: #f0b429;
+  transition: opacity .2s ease;
+  opacity: 1;
 }
 #theme-btn::after {
   content: '';
@@ -119,9 +131,15 @@ nav {
   border-radius: 50%;
   background: var(--muted);
   transition: transform .25s ease, background .25s ease;
+  z-index: 1;
+}
+html.dark #theme-btn::before {
+  content: '☽';
+  left: 5px; right: auto;
+  color: #ffffff;
 }
 html.dark #theme-btn::after {
-  transform: translateX(20px);
+  transform: translateX(28px);
   background: var(--accent);
 }
 html.dark #theme-btn {
