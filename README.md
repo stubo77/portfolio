@@ -60,7 +60,6 @@ npx wrangler pages dev public --kv AUTH_KV
 ---
 
 ## Customising
-
 ### Add a new project
 1. Copy `public/projects/cli-toolkit.html` (public) or `kv-store.html` (locked).
 2. Edit the content.
