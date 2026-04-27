@@ -135,7 +135,7 @@ nav {
 }
 html.dark #theme-btn::before {
   content: '☽';
-  left: 5px; right: auto;
+  left: 6px; right: auto;
   color: #ffffff;
 }
 html.dark #theme-btn::after {
