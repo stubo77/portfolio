@@ -409,6 +409,10 @@ p  { color: #3d3b35; }
 .about-link:hover { border-color: var(--text); background: var(--surface); }
 .about-link .link-icon { font-size: 1rem; }
 
+html.dark .about-icon {
+  filter: invert(1);
+}
+
 .contact-card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
