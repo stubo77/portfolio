@@ -115,22 +115,32 @@ nav {
 #theme-btn::before {
   content: '☀';
   position: absolute;
-  top: 50%; right: 10px;
+  top: 50%; right: 5px;
   transform: translateY(-50%);
+  font-size: .7rem;
+  line-height: 1;
   color: #f0b429;
+  transition: opacity .2s ease;
+  opacity: 1;
 }
 #theme-btn::after {
-
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform .25s ease, background .25s ease;
+  z-index: 1;
 }
 html.dark #theme-btn::before {
   content: '☽';
-  position: absolute;
-  top: 50%; left: 10px;
-  transform: translateY(-50%);
+  left: 10px; right: auto; top: 50%;
   color: #ffffff;
 }
 html.dark #theme-btn::after {
-  content: '';
+  transform: translateX(28px);
+  background: var(--accent);
 }
 html.dark #theme-btn {
   border-color: var(--accent);
