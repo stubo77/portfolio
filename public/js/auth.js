@@ -99,7 +99,10 @@ const Auth = (() => {
   }
 
   // Auto-init on DOMContentLoaded
-  document.addEventListener('DOMContentLoaded', updateNavAuth);
+  document.addEventListener('DOMContentLoaded', () => {
+    updateNavAuth();
+    initTheme();
+  });
 
   return { login, register, logout, isLoggedIn, getUser, getToken, requireAuth, updateNavAuth };
 })();
