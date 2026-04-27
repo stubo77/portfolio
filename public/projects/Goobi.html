@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stuart King — Goobi</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Stuart<span>.</span>King</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html" class="active">projects</a>
+      <a href="/about.html">about</a>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+  <a href="/projects.html" style="font-size:.8rem;font-family:var(--mono),sans-serif;color:var(--muted);display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;">
+    ← All projects
+  </a>
+
+  <div class="case-hero">
+    <p class="label">Finance / Data Management · 2026</p>
+    <h1 style="font-size:2.25rem;margin-top:.75rem;">Goobi</h1>
+    <p style="margin-top:1rem;max-width:52ch;color:#5a5851;">
+      Corporate executives, directors, and major shareholders are required by law to report their stock purchases
+      to the SEC within two business days via Form 4 filings. Goobi (name WIP) is a financial analytics tool based
+      on the perceived notion that insider transactions will, on average, beat the S&P 500. Goobi uses transaction
+      data from the SEC EDGAR database to perform backend analysis to compute a "quality" score.
+    </p>
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="label">Timeline</span>
+        <span>6 months</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Role</span>
+        <span>Lead Software Engineer</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Stack</span>
+        <span>Python, SQL</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Status</span>
+        <span>In-Progress</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <article class="case-content">
+      <h2>Problem</h2>
+      <p>
+        SEC Form 4 filings are public, but the EDGAR system is essentially a raw data dump. An attempt to prove
+        the hypothesis that insider trading typically beat the S&P 500 was made and proved success; however,
+        manual parsing and analysis of data points proved time-consuming and prone to errors. Continued use of
+        manual labor would prove inefficient and lead to losses in profit.
+      </p>
+
+      <h2>Solution</h2>
+      <p>
+        In conjunction with my brother, we designed, programmed, and tested a python based analysis tool. This
+        tool parses SEC databases, conducts in-depth analysis, and returns transactions which have been deemed
+        "quality".
+
+        This system is an automated pipeline that continuously monitors SEC EDGAR for new Form 4 filings, parses
+        and stores the relevant data, and then runs a multi-layered analysis to surface only the purchases most
+        likely to be meaningful. It filters out noise such as grants, awards, and any other purchases which
+        reflect strategic accumulation rather than personal conviction and scores what remains against a set of
+        weighted qualifiers. The output is a ranked, scored list of insider purchases that an investor can act
+        on with genuine context behind each signal.
+      </p>
+
+      <h2>Impact</h2>
+      <p>
+        The impact of this project is clear, there are several strong paths forward, each with real potential.
+        We’re not limited to a single answer we have multiple good options to choose from. There are a countless
+        number of independant investors most of whom would benefit from a system like this. Currently, talks of
+        monetization systems are in progress, but nothing has been set in stone quite yet.
+      </p>
+    </article>
+
+    <aside class="case-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-head">Project details</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-item">
+            <span class="label">Language</span>
+            <span>Python</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Runtime</span>
+            <span>TBD</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Distributed via</span>
+            <span>Not Currently Distributed</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Stuart King</p>
+    <p>Built with Cloudflare Pages</p>
+  </div>
+</footer>
+<div id="toast"></div>
+<script src="/js/auth.js"></script>
+<script>document.getElementById('year').textContent = String(new Date().getFullYear());</script>
+</body>
+</html>
