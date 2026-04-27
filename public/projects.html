@@ -35,7 +35,7 @@
     <button class="btn btn-ghost filter-btn active" data-filter="all">All</button>
     <button class="btn btn-ghost filter-btn" data-filter="systems">Systems</button>
     <button class="btn btn-ghost filter-btn" data-filter="web">Web</button>
-    <button class="btn btn-ghost filter-btn" data-filter="cli">CLI / Tooling</button>
+    <button class="btn btn-ghost filter-btn" data-filter="cli">Tooling</button>
     <button class="btn btn-ghost filter-btn" data-filter="open-source">Open Source</button>
   </div>
 
@@ -72,33 +72,14 @@
       year: '2024',
     },
     {
-      title: 'Dev CLI Toolkit',
-      desc: 'Composable CLI framework for scaffolding, linting, and releasing internal services.',
-      tags: ['TypeScript', 'CLI'],
-      category: 'cli',
-      href: '/projects/cli-toolkit.html',
+      title: 'Goobi Analysis Tool',
+      desc: 'SEC analytics tool for parsing and calculating the "quality" of recent form 4 insider trading transactions.',
+      tags: ['Python', 'Finance', 'Data Management'],
+      category: 'systems',
+      href: '/projects/goobi.html',
       locked: false,
-      year: '2024',
+      year: '2026',
     },
-    {
-      title: 'Edge Analytics',
-      desc: 'Real-time analytics running on Cloudflare Workers + Durable Objects.',
-      tags: ['Cloudflare', 'Workers'],
-      category: 'web',
-      href: '/projects/edge-analytics.html',
-      locked: true,
-      year: '2023',
-    },
-    {
-      title: 'OSS Linter',
-      desc: 'An extensible static analysis tool for detecting common async patterns in TypeScript.',
-      tags: ['TypeScript', 'AST'],
-      category: 'open-source',
-      href: '/projects/oss-linter.html',
-      locked: false,
-      year: '2023',
-    },
-    // Add more projects here
   ];
 
   let activeFilter = 'all';
