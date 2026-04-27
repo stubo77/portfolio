@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stuart King — Flight Manager</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    // Prevent flash of wrong theme
+    (function() {
+      const s = localStorage.getItem('portfolio_theme');
+      const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Stuart<span>.</span>King</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html" class="active">projects</a>
+      <a href="/about.html">about</a>
+      <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Case study content -->
+<main class="page">
+  <a href="/projects.html" style="font-size:.8rem;font-family:var(--mono),sans-serif;color:var(--muted);display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;">
+    ← All projects
+  </a>
+
+  <div class="case-hero">
+    <p class="label">Systems · 2025</p>
+    <h1 style="font-size:2.25rem;margin-top:.75rem;">Flight Management System</h1>
+    <p style="margin-top:1rem;max-width:52ch;color:#5a5851;">
+      A collection of flight‑management tools built in C++ to explore how different data structures impact performance and design.
+    </p>
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="label">Timeline</span>
+        <span>4 months</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Role</span>
+        <span>Solo Developer</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Stack</span>
+        <span>C++</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Status</span>
+        <span>Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <article class="case-content">
+      <h2>Problem</h2>
+      <p>
+        Modern systems rely heavily on efficient data handling, and it's not always clear
+        which data structure best supports various operations. Real-world flight management
+        systems must handle tasks such as storing flight records, searching for specific
+        flights, updating schedules, and organizing data for quick retrieval. Different data
+        structures offer different strengths and weaknesses when it comes to speed, memory
+        usage, and ease of performing these operations. This project explores how the choice
+        of data structure impacts the performance, scalability, and responsiveness of a
+        flight management tool when subjected to realistic workloads and highlights why
+        data structure selection is a critical design decision in software engineering.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        This project approaches the problem by building four versions of the flight management
+        tool, each version powered by a distinct underlying data structure. Each section
+        implements the same fundamental operations, distinguished solely by the data structure
+        on which it is built. By holding the functionality constant and varying only the data
+        structure the project isolates how each structure influences performance, organization,
+        and scalability. This parallel design makes it possible to directly observe how structural
+        choices affect the efficiency of common operations, the complexity of maintaining the
+        dataset, and the overall responsiveness of the system as the volume of flight data grows.
+      </p>
+      <div style="display: flex; gap: 40px;">
+        <div>
+          <h3>Core Operations:</h3>
+          <ul>
+            <li>Adding and canceling flights</li>
+            <li>Listing all flights</li>
+            <li>Filtering by airline or date</li>
+            <li>Canceling groups of flights</li>
+            <li>Searching for specific flights</li>
+            <li>Modifying flight details</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Data Structures:</h3>
+          <ul>
+            <li>Linked lists</li>
+            <li>Max heaps</li>
+            <li>Hash tables</li>
+            <li>Red black trees</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Results</h2>
+      <p>
+        As expected, the implemented operations behaved consistently across all sections
+        despite being backed by different data structures. Performance measurements showed
+        that each structure introduced predictable variations in runtime and memory usage.
+        The uniformity of results confirms that the shared operational interface was correctly
+        abstracted, and that differences in underlying representation did not affect
+        correctness, only efficiency characteristics.
+      </p>
+      <ul>
+        <li>Linked lists · Simplest structure resulting in mediocre to poor performance all around</li>
+        <li>Max heaps · Higher performance than linked lists with excellent cache locality</li>
+        <li>Hash tables · Very high search/insert/delete efficiency, however greater memory costs</li>
+        <li>Red black trees · Guaranteed search/insert/delete efficiency & great when sorted order required</li>
+      </ul>
+    </article>
+
+    <aside class="case-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-head">Project details</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-item">
+            <span class="label">Language</span>
+            <span>C++</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Storage</span>
+            <span>In-memory Storage</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Tests</span>
+            <span>Google Benchmark</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Repo</span>
+            <a href="https://github.com/stubo77/Flight-Manager" style="color:var(--accent); display: flex; align-items: center; gap: 6px" rel="noopener noreferrer" target="_blank">
+              <img src="https://cdn.simpleicons.org/github/000000" width="18" height="18" alt="GitHub" class="about-icon" />
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Stuart King</p>
+    <p>Built with Cloudflare Pages</p>
+  </div>
+</footer>
+<div id="toast"></div>
+<script src="/js/auth.js"></script>
+<script>document.getElementById('year').textContent = String(new Date().getFullYear());</script>
+</body>
+</html>
