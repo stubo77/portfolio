@@ -30,6 +30,7 @@ const Auth = (() => {
     }
   }
 
+  /*
   function getUser() {
     const token = getToken();
     if (!token) return null;
@@ -39,6 +40,7 @@ const Auth = (() => {
       return null;
     }
   }
+  */
 
   async function login(email, password) {
     const res = await fetch('/api/auth/login', {
@@ -75,7 +77,7 @@ const Auth = (() => {
     const btn = document.getElementById('auth-btn');
     if (!btn) return;
     if (isLoggedIn()) {
-      const user = getUser();
+      //const user = getUser();
       btn.textContent = 'sign out';
       btn.classList.add('signed-in');
       btn.onclick = () => { logout(); window.location.reload(); };
@@ -86,17 +88,18 @@ const Auth = (() => {
     }
   }
 
+  /*
   // call on protected pages
   function requireAuth(redirectBack = true) {
     if (!isLoggedIn()) {
-      const dest = redirectBack
-        ? `/login.html?next=${encodeURIComponent(window.location.pathname)}`
-        : '/login.html';
-      window.location.href = dest;
+      window.location.href = redirectBack
+          ? `/login.html?next=${encodeURIComponent(window.location.pathname)}`
+          : '/login.html';
       return false;
     }
     return true;
   }
+  */
 
   // Auto-init on DOMContentLoaded
   document.addEventListener('DOMContentLoaded', () => {
@@ -104,7 +107,7 @@ const Auth = (() => {
     initTheme();
   });
 
-  return { login, register, logout, isLoggedIn, getUser, getToken, requireAuth, updateNavAuth };
+  return { login, register, isLoggedIn };
 })();
 
 // Theme toggle
