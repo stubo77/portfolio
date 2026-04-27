@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Distributed KV Store — Your Name</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    // Prevent flash of wrong theme
+    (function() {
+      const s = localStorage.getItem('portfolio_theme');
+      const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
 </head>
 <body>
 
@@ -15,6 +23,7 @@
       <a href="/">home</a>
       <a href="/projects.html" class="active">projects</a>
       <a href="/about.html">about</a>
+      <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
       <button id="auth-btn">sign in</button>
     </div>
   </div>
@@ -35,7 +44,7 @@
 
 <!-- Case study content (shown when logged in) -->
 <main class="page" id="case-content" style="display:none;">
-  <a href="/projects.html" style="font-size:.8rem;font-family:var(--mono);color:var(--muted);display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;">
+  <a href="/projects.html" style="font-size: .8rem; font-family: var(--mono), monospace; color: var(--muted); display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 2rem;" >
     ← All projects
   </a>
 
@@ -154,7 +163,7 @@
 
 <script src="/js/auth.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = String(new Date().getFullYear());
 
   // Gate check — runs after auth.js initialises nav
   document.addEventListener('DOMContentLoaded', () => {

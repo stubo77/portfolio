@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stuart King — Goobi</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    // Prevent flash of wrong theme
+    (function() {
+      const s = localStorage.getItem('portfolio_theme');
+      const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
 </head>
 <body>
 
@@ -15,6 +23,7 @@
       <a href="/">home</a>
       <a href="/projects.html" class="active">projects</a>
       <a href="/about.html">about</a>
+      <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
       <button id="auth-btn">sign in</button>
     </div>
   </div>
