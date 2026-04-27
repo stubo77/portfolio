@@ -52,7 +52,7 @@
 
 <script src="/js/auth.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = String(new Date().getFullYear());
 
   const hint = document.getElementById('auth-hint');
   if (!Auth.isLoggedIn()) {
@@ -117,7 +117,7 @@
         <div class="project-card" data-cat="${p.category}">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
             <h3>${p.title}</h3>
-            <span style="font-family:var(--mono);font-size:.7rem;color:var(--muted);">${p.year}</span>
+            <span style="font-family:var(--mono),sans-serif;font-size:.7rem;color:var(--muted);">${p.year}</span>
           </div>
           <p>${p.desc}</p>
           <div class="project-meta">

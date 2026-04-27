@@ -76,7 +76,7 @@
 
 <script src="/js/auth.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = String(new Date().getFullYear());
 
   // If already logged in -> redirect home
   if (Auth.isLoggedIn()) window.location.href = '/';
