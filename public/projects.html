@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Your Name</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">your<span>.</span>name</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html" class="active">projects</a>
+      <a href="/about.html">about</a>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="fade-up" style="margin-bottom:3rem;">
+    <p class="label" style="margin-bottom:.75rem;">Work</p>
+    <h1 style="font-size:2rem;">Projects</h1>
+    <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;">
+      Case studies are available to signed-in visitors.
+      <span id="auth-hint"></span>
+    </p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div style="display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;" id="filter-bar">
+    <button class="btn btn-ghost filter-btn active" data-filter="all">All</button>
+    <button class="btn btn-ghost filter-btn" data-filter="systems">Systems</button>
+    <button class="btn btn-ghost filter-btn" data-filter="web">Web</button>
+    <button class="btn btn-ghost filter-btn" data-filter="cli">CLI / Tooling</button>
+    <button class="btn btn-ghost filter-btn" data-filter="open-source">Open Source</button>
+  </div>
+
+  <div class="projects-grid fade-up-2" id="all-projects"></div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Your Name</p>
+    <p>Built with Cloudflare Pages</p>
+  </div>
+</footer>
+<div id="toast"></div>
+
+<script src="/js/auth.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const hint = document.getElementById('auth-hint');
+  if (!Auth.isLoggedIn()) {
+    hint.innerHTML = `<a href="/login.html" style="color:var(--accent);text-decoration:underline;">Sign in</a> to unlock all case studies.`;
+  }
+
+  // All projects data
+  // Add new projects here. Categories: systems | web | cli | open-source
+  const projects = [
+    {
+      title: 'Distributed KV Store',
+      desc: 'Raft-based key-value store with linearizable reads and snapshot compaction.',
+      tags: ['Rust', 'Distributed Systems'],
+      category: 'systems',
+      href: '/projects/kv-store.html',
+      locked: true,
+      year: '2024',
+    },
+    {
+      title: 'Dev CLI Toolkit',
+      desc: 'Composable CLI framework for scaffolding, linting, and releasing internal services.',
+      tags: ['TypeScript', 'CLI'],
+      category: 'cli',
+      href: '/projects/cli-toolkit.html',
+      locked: false,
+      year: '2024',
+    },
+    {
+      title: 'Edge Analytics',
+      desc: 'Real-time analytics running on Cloudflare Workers + Durable Objects.',
+      tags: ['Cloudflare', 'Workers'],
+      category: 'web',
+      href: '/projects/edge-analytics.html',
+      locked: true,
+      year: '2023',
+    },
+    {
+      title: 'OSS Linter',
+      desc: 'An extensible static analysis tool for detecting common async patterns in TypeScript.',
+      tags: ['TypeScript', 'AST'],
+      category: 'open-source',
+      href: '/projects/oss-linter.html',
+      locked: false,
+      year: '2023',
+    },
+    // Add more projects here
+  ];
+
+  let activeFilter = 'all';
+
+  function renderProjects() {
+    const grid = document.getElementById('all-projects');
+    const visible = projects.filter(p => activeFilter === 'all' || p.category === activeFilter);
+    grid.innerHTML = '';
+    if (visible.length === 0) {
+      grid.innerHTML = '<div style="padding:2rem;color:var(--muted);font-size:.875rem;">No projects in this category yet.</div>';
+      return;
+    }
+    visible.forEach(p => {
+      const isLocked = p.locked && !Auth.isLoggedIn();
+      grid.innerHTML += `
+        <div class="project-card" data-cat="${p.category}">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <h3>${p.title}</h3>
+            <span style="font-family:var(--mono);font-size:.7rem;color:var(--muted);">${p.year}</span>
+          </div>
+          <p>${p.desc}</p>
+          <div class="project-meta">
+            <div class="project-tags">
+              ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
+            </div>
+            ${isLocked
+              ? `<a class="project-locked" href="/login.html?next=${encodeURIComponent(p.href)}"><span class="lock-icon">🔒</span> sign in</a>`
+              : `<a class="project-link" href="${p.href}">case study →</a>`
+            }
+          </div>
+        </div>`;
+    });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      renderProjects();
+    });
+  });
+
+  // Active filter button style
+  const style = document.createElement('style');
+  style.textContent = `.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text);}`;
+  document.head.appendChild(style);
+
+  renderProjects();
+</script>
+</body>
+</html>

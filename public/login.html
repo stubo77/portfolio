@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Your Name</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">your<span>.</span>name</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html">projects</a>
+      <a href="/about.html">about</a>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page page-sm" style="padding-top:2rem;">
+  <p class="label fade-up">Access</p>
+  <p style="margin-top:.5rem;color:var(--muted);font-size:.875rem;" class="fade-up">
+    Sign in to view locked case studies.
+  </p>
+
+  <!-- Login form -->
+  <div class="auth-card fade-up-2" id="login-card">
+    <h2>Sign in</h2>
+    <p>Welcome back.</p>
+
+    <div class="form-group">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <div class="form-error" id="login-error"></div>
+    <button class="btn btn-primary btn-full" id="login-submit">Sign in</button>
+    <p class="auth-switch">No account? <a href="#" id="go-register">Create one →</a></p>
+  </div>
+
+  <!-- Register form -->
+  <div class="auth-card fade-up-2" id="register-card" style="display:none;">
+    <h2>Create account</h2>
+    <p>Request access to case studies.</p>
+
+    <div class="form-group">
+      <label for="reg-name">Name</label>
+      <input type="text" id="reg-name" placeholder="Your name" autocomplete="name" />
+    </div>
+    <div class="form-group">
+      <label for="reg-email">Email</label>
+      <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label for="reg-password">Password</label>
+      <input type="password" id="reg-password" placeholder="min. 8 characters" autocomplete="new-password" />
+    </div>
+    <div class="form-error" id="reg-error"></div>
+    <button class="btn btn-primary btn-full" id="reg-submit">Create account</button>
+    <p class="auth-switch">Already have one? <a href="#" id="go-login">Sign in →</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Your Name</p>
+  </div>
+</footer>
+<div id="toast"></div>
+
+<script src="/js/auth.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // If already logged in -> redirect home
+  if (Auth.isLoggedIn()) window.location.href = '/';
+
+  // Destination after login
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get('next') || '/';
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+  function clearError(id) {
+    const el = document.getElementById(id);
+    el.textContent = '';
+    el.classList.remove('visible');
+  }
+
+  // Toggle forms
+  document.getElementById('go-register').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('login-card').style.display = 'none';
+    document.getElementById('register-card').style.display = 'block';
+  });
+  document.getElementById('go-login').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('register-card').style.display = 'none';
+    document.getElementById('login-card').style.display = 'block';
+  });
+
+  // Login
+  document.getElementById('login-submit').addEventListener('click', async () => {
+    clearError('login-error');
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    if (!email || !password) { showError('login-error', 'Please fill in all fields.'); return; }
+    const btn = document.getElementById('login-submit');
+    btn.textContent = 'Signing in…'; btn.disabled = true;
+    try {
+      await Auth.login(email, password);
+      showToast('Signed in!');
+      setTimeout(() => window.location.href = next, 600);
+    } catch (err) {
+      showError('login-error', err.message);
+      btn.textContent = 'Sign in'; btn.disabled = false;
+    }
+  });
+
+  // Register
+  document.getElementById('reg-submit').addEventListener('click', async () => {
+    clearError('reg-error');
+    const name = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const password = document.getElementById('reg-password').value;
+    if (!name || !email || !password) { showError('reg-error', 'Please fill in all fields.'); return; }
+    if (password.length < 8) { showError('reg-error', 'Password must be at least 8 characters.'); return; }
+    const btn = document.getElementById('reg-submit');
+    btn.textContent = 'Creating…'; btn.disabled = true;
+    try {
+      await Auth.register(email, password, name);
+      showToast('Account created!');
+      setTimeout(() => window.location.href = next, 600);
+    } catch (err) {
+      showError('reg-error', err.message);
+      btn.textContent = 'Create account'; btn.disabled = false;
+    }
+  });
+
+  // Enter key support
+  ['login-email','login-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('login-submit').click();
+    });
+  });
+</script>
+</body>
+</html>

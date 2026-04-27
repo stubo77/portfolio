@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distributed KV Store — Your Name</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">your<span>.</span>name</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html" class="active">projects</a>
+      <a href="/about.html">about</a>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Auth gate (shown when logged out) -->
+<div class="page auth-gate" id="auth-gate">
+  <div class="auth-gate-card">
+    <span class="lock-big">🔒</span>
+    <h2>Case Study Locked</h2>
+    <p>Sign in or create a free account to read this case study and all others.</p>
+    <a href="/login.html?next=/projects/kv-store.html" class="btn btn-primary">Sign in to continue →</a>
+    <p style="margin-top:1rem;font-size:.75rem;color:var(--muted);">
+      <a href="/projects.html" style="color:var(--muted);text-decoration:underline;">← Back to projects</a>
+    </p>
+  </div>
+</div>
+
+<!-- Case study content (shown when logged in) -->
+<main class="page" id="case-content" style="display:none;">
+  <a href="/projects.html" style="font-size:.8rem;font-family:var(--mono);color:var(--muted);display:inline-flex;align-items:center;gap:.4rem;margin-bottom:2rem;">
+    ← All projects
+  </a>
+
+  <div class="case-hero">
+    <p class="label">Systems · 2024</p>
+    <h1 style="font-size:2.25rem;margin-top:.75rem;">Distributed KV Store</h1>
+    <p style="margin-top:1rem;max-width:52ch;color:#5a5851;">
+      A Raft-based key-value store written in Rust with linearizable reads,
+      snapshot-based log compaction, and a clean HTTP API.
+    </p>
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="label">Timeline</span>
+        <span>3 months</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Role</span>
+        <span>Solo project</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Stack</span>
+        <span>Rust, Tokio, gRPC</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="label">Status</span>
+        <span>Open source</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <article class="case-content">
+      <h2>Problem</h2>
+      <p>
+        Existing embedded KV libraries offered great single-node performance but lacked
+        built-in replication. I wanted a small, understandable implementation that
+        I could use as a learning substrate for distributed systems concepts.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I implemented the Raft consensus algorithm from scratch in Rust using Tokio for
+        async I/O. The design separates the consensus layer from the state machine,
+        making it straightforward to swap storage backends.
+      </p>
+      <ul>
+        <li>Leader election with randomized election timeouts</li>
+        <li>Log replication with batched AppendEntries RPCs</li>
+        <li>Snapshot transfer for lagging followers</li>
+        <li>Linearizable reads via ReadIndex</li>
+      </ul>
+
+      <h2>Challenges</h2>
+      <p>
+        The hardest part was correctly handling log truncation during snapshot installation
+        while simultaneously processing incoming RPCs. Rust's ownership model actually
+        helped here — the compiler caught several subtle aliasing bugs at compile time.
+      </p>
+
+      <h2>Results</h2>
+      <p>
+        The cluster sustains ~40k writes/sec on commodity hardware with 3 nodes and
+        p99 latency under 4ms on a local network. The codebase is ~6k lines of Rust
+        with thorough property-based tests using proptest.
+      </p>
+
+      <h2>Learnings</h2>
+      <p>
+        Reading the original Raft paper alongside Raft's TLA+ spec was essential.
+        Writing the implementation forced me to understand every edge case the spec
+        glosses over in prose.
+      </p>
+    </article>
+
+    <aside class="case-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-head">Project details</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-item">
+            <span class="label">Language</span>
+            <span>Rust (stable)</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Async runtime</span>
+            <span>Tokio</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">RPC</span>
+            <span>tonic (gRPC)</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Storage</span>
+            <span>RocksDB</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Tests</span>
+            <span>proptest, miri</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Repo</span>
+            <span><a href="https://github.com/yourhandle/kv" style="color:var(--accent);">github →</a></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Your Name</p>
+    <p>Built with Cloudflare Pages</p>
+  </div>
+</footer>
+<div id="toast"></div>
+
+<script src="/js/auth.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Gate check — runs after auth.js initialises nav
+  document.addEventListener('DOMContentLoaded', () => {
+    if (Auth.isLoggedIn()) {
+      document.getElementById('auth-gate').style.display = 'none';
+      document.getElementById('case-content').style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Your Name</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">your<span>.</span>name</a>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/projects.html">projects</a>
+      <a href="/about.html" class="active">about</a>
+      <button id="auth-btn">sign in</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="fade-up" style="border-bottom:1px solid var(--border);padding-bottom:2.5rem;margin-bottom:3rem;">
+    <p class="label" style="margin-bottom:.75rem;">About</p>
+    <h1 style="font-size:2rem;">Your Name</h1>
+    <p style="margin-top:.5rem;color:var(--muted);">Software Engineer · City, Country</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-bio fade-up-2">
+      <p>
+        I'm a software engineer with a focus on systems programming, developer tooling,
+        and distributed infrastructure. I enjoy working on problems where correctness and
+        performance intersect.
+      </p>
+      <p>
+        Previously at <strong>Company A</strong> and <strong>Company B</strong>.
+        Currently building <strong>Something Cool</strong>.
+      </p>
+      <p>
+        Outside of work I contribute to open-source projects, write occasionally, and
+        think too much about programming language design.
+      </p>
+
+      <!-- imeline -->
+      <div style="margin-top:2.5rem;">
+        <p class="label" style="margin-bottom:1.25rem;">Experience</p>
+        <div style="display:flex;flex-direction:column;gap:1.25rem;" id="timeline">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-up-3">
+      <!-- Links -->
+      <div class="contact-card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1rem;">Get in touch</h3>
+        <div class="about-links">
+          <a href="mailto:you@example.com" class="about-link">
+            <span class="link-icon">✉️</span>
+            <span>you@example.com</span>
+          </a>
+          <a href="https://github.com/yourhandle" class="about-link" target="_blank" rel="noopener">
+            <span class="link-icon">⌥</span>
+            <span>github.com/yourhandle</span>
+          </a>
+          <a href="https://linkedin.com/in/yourhandle" class="about-link" target="_blank" rel="noopener">
+            <span class="link-icon">◈</span>
+            <span>linkedin.com/in/yourhandle</span>
+          </a>
+          <a href="/resume.pdf" class="about-link" target="_blank">
+            <span class="link-icon">↓</span>
+            <span>Download résumé</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Currently reading / using -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-head">Currently</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-item">
+            <span class="label">Reading</span>
+            <span>Crafting Interpreters</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Building with</span>
+            <span>Rust, Cloudflare Workers</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="label">Interested in</span>
+            <span>WASM, CRDTs, Zig</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© <span id="year"></span> Your Name</p>
+    <p>Built with Cloudflare Pages</p>
+  </div>
+</footer>
+<div id="toast"></div>
+
+<script src="/js/auth.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Experience timeline — edit freely
+  const experience = [
+    { role: 'Senior Software Engineer', company: 'Company B', period: '2023 – present' },
+    { role: 'Software Engineer', company: 'Company A', period: '2021 – 2023' },
+    { role: 'Intern', company: 'Startup Inc.', period: 'Summer 2020' },
+  ];
+
+  const tl = document.getElementById('timeline');
+  experience.forEach(e => {
+    tl.innerHTML += `
+      <div style="display:grid;grid-template-columns:1fr auto;gap:.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);">
+        <div>
+          <p style="font-weight:500;font-size:.9rem;">${e.role}</p>
+          <p style="color:var(--muted);font-size:.8rem;">${e.company}</p>
+        </div>
+        <span style="font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap;">${e.period}</span>
+      </div>`;
+  });
+</script>
+</body>
+</html>
