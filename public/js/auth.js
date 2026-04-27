@@ -104,6 +104,29 @@ const Auth = (() => {
   return { login, register, logout, isLoggedIn, getUser, getToken, requireAuth, updateNavAuth };
 })();
 
+// Theme toggle
+function initTheme() {
+  // Apply saved theme immediately
+  const saved = localStorage.getItem('portfolio_theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = saved ? saved === 'dark' : prefersDark;
+  document.documentElement.classList.toggle('dark', isDark);
+  updateThemeBtn(isDark);
+}
+
+function updateThemeBtn(isDark) {
+  const btn = document.getElementById('theme-btn');
+  if (!btn) return;
+  btn.textContent = isDark ? '☀' : '☾';
+  btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('portfolio_theme', isDark ? 'dark' : 'light');
+  updateThemeBtn(isDark);
+}
+
 // Toast helper
 function showToast(msg, duration = 3000) {
   const el = document.getElementById('toast');

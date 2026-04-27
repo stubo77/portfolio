@@ -20,6 +20,21 @@
   --transition: 180ms ease;
 }
 
+html.dark {
+  --bg:        #0f0f0d;
+  --surface:   #1a1916;
+  --border:    #2a2925;
+  --muted:     #6b6860;
+  --text:      #e8e6e0;
+  --accent:    #4f7bff;
+  --accent-dim:#1a2a5e;
+  --danger:    #e05c4b;
+}
+
+html.dark p  { color: #b0ada5; }
+html.dark .hero-sub { color: #8a877f; }
+html.dark .case-content li { color: #b0ada5; }
+
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
   background: var(--bg);
@@ -83,6 +98,24 @@ nav {
   color: var(--accent);
   background: var(--accent-dim);
 }
+
+/* Theme toggle */
+#theme-btn {
+  font-size: 1rem;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+#theme-btn:hover { border-color: var(--text); color: var(--text); }
+
+/* smooth theme transition */
+html { transition: background-color .25s ease, color .25s ease; }
+body { transition: background-color .25s ease; }
 
 /* Layout */
 .page {

@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stuart King — About</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    (function() {
+      const s = localStorage.getItem('portfolio_theme');
+      const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
 </head>
 <body>
 
@@ -15,6 +22,7 @@
       <a href="/">home</a>
       <a href="/projects.html">projects</a>
       <a href="/about.html" class="active">about</a>
+      <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☾</button>
       <button id="auth-btn">sign in</button>
     </div>
   </div>
@@ -108,9 +116,7 @@
 
   // Experience timeline — edit freely
   const experience = [
-    { role: 'Senior Software Engineer', company: 'Company B', period: '2023 – present' },
-    { role: 'Software Engineer', company: 'Company A', period: '2021 – 2023' },
-    { role: 'Intern', company: 'Startup Inc.', period: 'Summer 2020' },
+    { role: 'role', company: 'Company', period: 'period' },
   ];
 
   const tl = document.getElementById('timeline');
