@@ -43,7 +43,7 @@
     <button class="btn btn-primary filter-btn active" data-filter="all">All</button>
     <button class="btn btn-primary filter-btn" data-filter="systems">Systems</button>
     <button class="btn btn-primary filter-btn" data-filter="web">Web</button>
-    <button class="btn btn-primary filter-btn" data-filter="cli">Tools</button>
+    <button class="btn btn-primary filter-btn" data-filter="tools">Tools</button>
     <button class="btn btn-primary filter-btn" data-filter="open-source">Open Source</button>
   </div>
 
@@ -68,7 +68,7 @@
   }
 
   // All projects data
-  // Add new projects here. Categories: systems | web | cli | open-source
+  // Add new projects here. Categories: systems | web | tools | open-source
   const projects = [
     {
       title: 'Java Forum',
@@ -92,7 +92,7 @@
       title: 'Binary Conversion Tool',
       desc: 'Tool for converting to/from: binary, decimal, hexadecimal, and ascii.',
       tags: ['JavaScript', 'Tools'],
-      category: 'tools',
+      category: ['tools', 'web'],
       href: '/projects/converter.html',
       locked: false,
       year: '2024',
