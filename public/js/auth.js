@@ -123,7 +123,6 @@ function initTheme() {
 function updateThemeBtn(isDark) {
   const btn = document.getElementById('theme-btn');
   if (!btn) return;
-  btn.textContent = isDark ? '☀' : '☾';
   btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 }
 
