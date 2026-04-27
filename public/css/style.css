@@ -115,13 +115,8 @@ nav {
 #theme-btn::before {
   content: '☀';
   position: absolute;
-  top: 50%; right: 5px;
-  transform: translateY(-50%);
-  font-size: .7rem;
-  line-height: 1;
+  top: 50%; right: 10px;
   color: #f0b429;
-  transition: opacity .2s ease;
-  opacity: 1;
 }
 #theme-btn::after {
   content: '';
@@ -135,7 +130,8 @@ nav {
 }
 html.dark #theme-btn::before {
   content: '☽';
-  left: 10px; right: auto; top: 10px;
+  position: absolute;
+  top: 50%; left: 10px;
   color: #ffffff;
 }
 html.dark #theme-btn::after {
