@@ -104,7 +104,7 @@
 
 <script src="/js/auth.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = String(new Date().getFullYear());
 
   // Experience timeline — edit freely
   const experience = [
@@ -121,7 +121,7 @@
           <p style="font-weight:500;font-size:.9rem;">${e.role}</p>
           <p style="color:var(--muted);font-size:.8rem;">${e.company}</p>
         </div>
-        <span style="font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap;">${e.period}</span>
+        <span style="font-family:var(--mono),sans-serif;font-size:.7rem;color:var(--muted);white-space:nowrap;">${e.period}</span>
       </div>`;
   });
 </script>
