@@ -103,7 +103,7 @@
 
   function renderProjects() {
     const grid = document.getElementById('all-projects');
-    const visible = projects.filter(p => activeFilter === 'all' || p.category === activeFilter);
+    const visible = projects.filter(p => activeFilter === 'all' || p.category.includes(activeFilter));
     grid.innerHTML = '';
     if (visible.length === 0) {
       grid.innerHTML = '<div style="padding:2rem;color:var(--muted);font-size:.875rem;">No projects in this category yet.</div>';
