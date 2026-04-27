@@ -115,7 +115,7 @@ nav {
 #theme-btn::before {
   content: '☀';
   position: absolute;
-  top: 50%; right: 5px;
+  top: 50%; right: 10px;
   transform: translateY(-50%);
   font-size: .7rem;
   line-height: 1;
@@ -135,8 +135,14 @@ nav {
 }
 html.dark #theme-btn::before {
   content: '☽';
+  position: absolute;
   left: 10px; right: auto; top: 50%;
+  transform: translateY(-50%);
+  font-size: .7rem;
+  line-height: 1;
   color: #ffffff;
+  transition: opacity .2s ease;
+  opacity: 1;
 }
 html.dark #theme-btn::after {
   transform: translateX(28px);
