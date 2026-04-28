@@ -249,11 +249,9 @@ p  { color: #3d3b35; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  align-items: stretch;
 }
 a.project-card {
   display: flex;
-  flex-direction: column;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
