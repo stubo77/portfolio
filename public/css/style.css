@@ -250,6 +250,12 @@ p  { color: #3d3b35; }
   border-radius: var(--radius);
   overflow: hidden;
 }
+a.project-card {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 .project-card {
   background: var(--bg);
   padding: 1.75rem;
