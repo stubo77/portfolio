@@ -33,7 +33,7 @@
     <p class="label" style="margin-bottom:.75rem;">Work</p>
     <h1 style="font-size:2rem;">Projects</h1>
     <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;">
-      All case studies and projects are available to signed-in visitors.
+      Case studies and projects are available to signed-in visitors.
       <span id="auth-hint"></span>
     </p>
   </div>
@@ -121,7 +121,7 @@
     visible.forEach(p => {
       const isLocked = p.locked && !Auth.isLoggedIn();
       grid.innerHTML += `
-        <a class="project-card" data-cat="${p.category}" href="${isLocked ? `/login.html?next=${encodeURIComponent(p.href)}` : p.href}">
+        <div class="project-card" data-cat="${p.category}">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
             <h3>${p.title}</h3>
             <span style="font-family:var(--mono),sans-serif;font-size:.7rem;color:var(--muted);">${p.year}</span>
@@ -133,10 +133,10 @@
             </div>
             ${isLocked
               ? `<a class="project-locked" href="/login.html?next=${encodeURIComponent(p.href)}"><span class="lock-icon">🔒</span> sign in</a>`
-              : `<a class="project-link" href="${p.href}">view →</a>`
+              : `<a class="project-link" href="${p.href}">case study →</a>`
             }
           </div>
-        </a>`;
+        </div>`;
     });
   }
 
