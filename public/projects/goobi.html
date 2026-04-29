@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stuart King — Goobi</title>
+  <title>Stuart King — GOOBI</title>
   <link rel="stylesheet" href="/css/style.css" />
   <script>
     // Prevent flash of wrong theme
@@ -34,7 +34,7 @@
   <div class="auth-gate-card">
     <span class="lock-big">🔒</span>
     <h2>Case Study Locked</h2>
-    <p>Sign in or create a free account to read this case study and all others.</p>
+    <p>Sign in or create a free account to read this and other case studies .</p>
     <a href="/login.html?next=/projects/kv-store.html" class="btn btn-primary">Sign in to continue →</a>
     <p style="margin-top:1rem;font-size:.75rem;color:var(--muted);">
       <a href="/projects.html" style="color:var(--muted);text-decoration:underline;">← Back to projects</a>
@@ -49,12 +49,13 @@
 
   <div class="case-hero">
     <p class="label">Systems · 2026</p>
-    <h1 style="font-size:2.25rem;margin-top:.75rem;">Goobi</h1>
+    <h1 style="font-size:2.25rem;margin-top:.75rem;">GOOBI</h1>
     <p style="margin-top:1rem;max-width:52ch;color:#5a5851;">
       Corporate executives, directors, and major shareholders are required by law to report their stock purchases
-      to the SEC within two business days via Form 4 filings. Goobi (name WIP) is a financial analytics tool based
-      on the perceived notion that insider transactions will, on average, beat the S&P 500. Goobi uses transaction
-      data from the SEC EDGAR database to perform backend analysis to compute a "quality" score.
+      to the SEC within two business days via Form 4 filings. GOOBI (Generative Outlier Oriented Benchmark Indexer)
+      is a financial analytics tool based on the hypothesis that insider transactions will, on average, beat the
+      S&P 500. Goobi uses transaction data from the SEC EDGAR database to perform backend analysis to compute a
+      "quality" score.
     </p>
     <div class="case-meta">
       <div class="case-meta-item">
@@ -81,7 +82,7 @@
       <h2>Problem</h2>
       <p>
         SEC Form 4 filings are public, but the EDGAR system is essentially a raw data dump. An attempt to prove
-        the hypothesis that insider trading typically beat the S&P 500 was made and proved success; however,
+        the hypothesis that insider trading typically beat the S&P 500 was made, and proved success; however,
         manual parsing and analysis of data points proved time-consuming and prone to errors. Continued use of
         manual labor would prove inefficient and lead to losses in profit.
       </p>
@@ -89,9 +90,7 @@
       <h2>Solution</h2>
       <p>
         In conjunction with my brother, we designed, programmed, and tested a python based analysis tool. This
-        tool parses SEC databases, conducts in-depth analysis, and returns transactions which have been deemed
-        "quality".
-
+        tool parses SEC databases, conducts in-depth analysis, and returns flagged transactions.
         This system is an automated pipeline that continuously monitors SEC EDGAR for new Form 4 filings, parses
         and stores the relevant data, and then runs a multi-layered analysis to surface only the purchases most
         likely to be meaningful. It filters out noise such as grants, awards, and any other purchases which
