@@ -26,7 +26,6 @@
             <a href="/projects.html">projects</a>
             <a href="/about.html">about</a>
             <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
-            <button id="auth-btn">sign in</button>
         </div>
     </div>
 </nav>
@@ -79,7 +78,7 @@
 
 <div id="toast"></div>
 
-<script src="/js/auth.js"></script>
+<script src="/js/theme.js"></script>
 <script>
     document.getElementById('year').textContent = String(new Date().getFullYear());
 
@@ -97,34 +96,29 @@
     });
 
     // Featured projects data
-    // Set `locked: true` to require login for the detail page.
     const featured = [
         {
             title: 'Java Forum',
             desc: 'Java-based forum to facilitate interactions between teachers, students, and admins.',
             tags: ['Python', 'System'],
             href: '/projects/forum.html',
-            locked: false,
         },
         {
             title: 'GOOBI Analysis Tool',
             desc: 'SEC analytics tool for parsing and calculating the "quality" of recent form 4 insider trading transactions.',
             tags: ['Python', 'Finance', 'Data Management'],
             href: '/projects/goobi.html',
-            locked: true,
         },
         {
             title: 'Flight Manager',
             desc: 'A collection of flight‑management tools built to explore how different data structures impact performance and design.',
             tags: ['C++', 'Tools', 'Data Structures'],
             href: '/projects/flight-manager.html',
-            locked: false,
         },
     ];
 
     const fgrid = document.getElementById('featured-grid');
     featured.forEach(p => {
-        const isLocked = p.locked && !Auth.isLoggedIn();
         fgrid.innerHTML += `
       <div class="project-card">
         <h3>${p.title}</h3>
@@ -133,10 +127,7 @@
           <div class="project-tags">
             ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
           </div>
-          ${isLocked
-            ? `<span class="project-locked"><span class="lock-icon">🔒</span> sign in to view</span>`
-            : `<a class="project-link" href="${p.href}">view →</a>`
-        }
+          <a class="project-link" href="${p.href}">view →</a>
         </div>
       </div>`;
     });

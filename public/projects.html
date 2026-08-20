@@ -23,7 +23,6 @@
       <a href="/projects.html" class="active">projects</a>
       <a href="/about.html">about</a>
       <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
-      <button id="auth-btn">sign in</button>
     </div>
   </div>
 </nav>
@@ -33,8 +32,7 @@
     <p class="label" style="margin-bottom:.75rem;">Work</p>
     <h1 style="font-size:2rem;">Projects</h1>
     <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;">
-      Case studies and projects are available to signed-in visitors.
-      <span id="auth-hint"></span>
+      Case studies and projects I've worked on.
     </p>
   </div>
 
@@ -58,14 +56,9 @@
 </footer>
 <div id="toast"></div>
 
-<script src="/js/auth.js"></script>
+<script src="/js/theme.js"></script>
 <script>
   document.getElementById('year').textContent = String(new Date().getFullYear());
-
-  const hint = document.getElementById('auth-hint');
-  if (!Auth.isLoggedIn()) {
-    hint.innerHTML = `<a href="/login.html" style="color:var(--accent);text-decoration:underline;">Sign in</a> to unlock all case studies.`;
-  }
 
   // All projects data
   // Add new projects here. Categories: systems | web | tools | open-source
@@ -76,7 +69,6 @@
       tags: ['Python', 'System'],
       category: 'systems',
       href: '/projects/forum.html',
-      locked: false,
       year: '2026',
     },
     {
@@ -85,7 +77,6 @@
       tags: ['Python', 'Finance', 'Data Management'],
       category: ['systems', 'data'],
       href: '/projects/goobi.html',
-      locked: true,
       year: '2026',
     },
     {
@@ -94,7 +85,6 @@
       tags: ['JavaScript', 'Tools'],
       category: ['tools', 'web'],
       href: '/projects/converter.html',
-      locked: false,
       year: '2024',
     },
     {
@@ -103,7 +93,6 @@
       tags: ['C++', 'Tools', 'Data Structures'],
       category: ['tools', 'data'],
       href: '/projects/flight-manager.html',
-      locked: false,
       year: '2025',
     },
     {
@@ -112,7 +101,6 @@
       tags: ['Digital Design'],
       category: ['other'],
       href: '/projects/microprocessor.html',
-      locked: false,
       year: '2024',
     },
   ];
@@ -128,7 +116,6 @@
       return;
     }
     visible.forEach(p => {
-      const isLocked = p.locked && !Auth.isLoggedIn();
       grid.innerHTML += `
         <div class="project-card" data-cat="${p.category}">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -140,10 +127,7 @@
             <div class="project-tags">
               ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
             </div>
-            ${isLocked
-              ? `<a class="project-locked" href="/login.html?next=${encodeURIComponent(p.href)}"><span class="lock-icon">🔒</span> sign in</a>`
-              : `<a class="project-link" href="${p.href}">view →</a>`
-            }
+            <a class="project-link" href="${p.href}">view →</a>
           </div>
         </div>`;
     });

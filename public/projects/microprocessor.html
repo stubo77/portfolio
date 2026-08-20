@@ -24,7 +24,6 @@
       <a href="/projects.html" class="active">projects</a>
       <a href="/about.html">about</a>
       <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
-      <button id="auth-btn">sign in</button>
     </div>
   </div>
 </nav>
@@ -81,33 +80,33 @@
           <h3>Design Hierarchy:</h3>
           <ul>
             <li>Microprocessor
-            <ul>
-              <li>Brainless Processor
-                <ul>
-                  <li>Arithmetic Logic Unit
-                  <ul>
-                    <li>not-neg</li>
-                    <li>and-add</li>
-                  </ul>
-                  </li>
-                  <li>Accumulator Register</li>
-                  <li>Program RAM</li>
-                </ul>
-              </li>
-              <li>Instruction Controller
               <ul>
-                <li>Instruction Register</li>
-                <li>Step Register</li>
-                <li>Microcode ROM</li>
+                <li>Brainless Processor
+                  <ul>
+                    <li>Arithmetic Logic Unit
+                      <ul>
+                        <li>not-neg</li>
+                        <li>and-add</li>
+                      </ul>
+                    </li>
+                    <li>Accumulator Register</li>
+                    <li>Program RAM</li>
+                  </ul>
+                </li>
+                <li>Instruction Controller
+                  <ul>
+                    <li>Instruction Register</li>
+                    <li>Step Register</li>
+                    <li>Microcode ROM</li>
+                  </ul>
+                </li>
+                <li>Address Generator
+                  <ul>
+                    <li>Program Counter</li>
+                    <li>Memory Address Generator</li>
+                  </ul>
+                </li>
               </ul>
-              </li>
-              <li>Address Generator
-                <ul>
-                <li>Program Counter</li>
-                <li>Memory Address Generator</li>
-                </ul>
-              </li>
-            </ul>
             </li>
           </ul>
         </div>
@@ -128,13 +127,13 @@
         <div class="sidebar-card-head">Project details</div>
         <div class="sidebar-card-body">
           <div class="sidebar-item">
-          <div class="sidebar-item">
-            <span class="label">Repo</span>
-            <a href="https://github.com/stubo77/16-Bit-Processor/tree/main" style="color:var(--accent); display: flex; align-items: center; gap: 6px" rel="noopener noreferrer" target="_blank">
-              <img src="https://cdn.simpleicons.org/github/000000" width="18" height="18" alt="GitHub" class="about-icon" />
-              <span>GitHub</span>
-            </a>
-          </div>
+            <div class="sidebar-item">
+              <span class="label">Repo</span>
+              <a href="https://github.com/stubo77/16-Bit-Processor/tree/main" style="color:var(--accent); display: flex; align-items: center; gap: 6px" rel="noopener noreferrer" target="_blank">
+                <img src="https://cdn.simpleicons.org/github/000000" width="18" height="18" alt="GitHub" class="about-icon" />
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -149,7 +148,7 @@
   </div>
 </footer>
 <div id="toast"></div>
-<script src="/js/auth.js"></script>
+<script src="/js/theme.js"></script>
 <script>document.getElementById('year').textContent = String(new Date().getFullYear());</script>
 </body>
 </html>
