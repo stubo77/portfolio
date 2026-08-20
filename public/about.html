@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stuart King — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" />
   <link rel="stylesheet" href="/css/style.css" />
   <script>
     (function() {
@@ -55,7 +58,13 @@
       <div style="margin-top:2.5rem;">
         <p class="label" style="margin-bottom:1.25rem;">Experience</p>
         <div style="display:flex;flex-direction:column;gap:1.25rem;" id="timeline">
-          <!-- filled by JS -->
+          <div style="display:grid;grid-template-columns:1fr auto;gap:.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);">
+            <div>
+              <p style="font-weight:500;font-size:.9rem;">role</p>
+              <p style="color:var(--muted);font-size:.8rem;">Company</p>
+            </div>
+            <span style="font-family:var(--mono),sans-serif;font-size:.7rem;color:var(--muted);white-space:nowrap;">period</span>
+          </div>
         </div>
       </div>
     </div>
@@ -117,23 +126,6 @@
 <script src="/js/theme.js"></script>
 <script>
   document.getElementById('year').textContent = String(new Date().getFullYear());
-
-  // Experience timeline — edit freely
-  const experience = [
-    { role: 'role', company: 'Company', period: 'period' },
-  ];
-
-  const tl = document.getElementById('timeline');
-  experience.forEach(e => {
-    tl.innerHTML += `
-      <div style="display:grid;grid-template-columns:1fr auto;gap:.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);">
-        <div>
-          <p style="font-weight:500;font-size:.9rem;">${e.role}</p>
-          <p style="color:var(--muted);font-size:.8rem;">${e.company}</p>
-        </div>
-        <span style="font-family:var(--mono),sans-serif;font-size:.7rem;color:var(--muted);white-space:nowrap;">${e.period}</span>
-      </div>`;
-  });
 </script>
 </body>
 </html>

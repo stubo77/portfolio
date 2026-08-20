@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stuart King — Home</title>
     <meta name="description" content="Computer engineer specializing in systems, web, and developer tooling." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" />
     <link rel="stylesheet" href="/css/style.css" />
     <script>
         // Prevent flash of wrong theme
@@ -52,7 +55,14 @@
     <section class="skills-strip">
         <p class="label">Stack</p>
         <div class="skills-grid" id="skills-grid">
-            <!-- populated by JS below -->
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C suite</span>
+            <span class="skill-tag">Cloudflare Workers</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">SQL</span>
         </div>
     </section>
 
@@ -63,7 +73,43 @@
             <a href="/projects.html">all projects →</a>
         </div>
         <div class="projects-grid" id="featured-grid">
-            <!-- populated by JS below -->
+            <div class="project-card">
+                <h3>Java Forum</h3>
+                <p>Java-based forum to facilitate interactions between teachers, students, and admins.</p>
+                <div class="project-meta">
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">System</span>
+                    </div>
+                    <a class="project-link" href="/projects/forum.html">view →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>GOOBI Analysis Tool</h3>
+                <p>SEC analytics tool for parsing and calculating the "quality" of recent form 4 insider trading transactions.</p>
+                <div class="project-meta">
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Finance</span>
+                        <span class="project-tag">Data Management</span>
+                    </div>
+                    <a class="project-link" href="/projects/goobi.html">view →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Flight Manager</h3>
+                <p>A collection of flight-management tools built to explore how different data structures impact performance and design.</p>
+                <div class="project-meta">
+                    <div class="project-tags">
+                        <span class="project-tag">C++</span>
+                        <span class="project-tag">Tools</span>
+                        <span class="project-tag">Data Structures</span>
+                    </div>
+                    <a class="project-link" href="/projects/flight-manager.html">view →</a>
+                </div>
+            </div>
         </div>
     </section>
 </main>
@@ -81,56 +127,6 @@
 <script src="/js/theme.js"></script>
 <script>
     document.getElementById('year').textContent = String(new Date().getFullYear());
-
-    // Skills list
-    const skills = [
-        'Java', 'Python', 'C suite', 'Cloudflare Workers',
-        'Docker', 'Linux', 'Git', 'SQL'
-    ];
-    const grid = document.getElementById('skills-grid');
-    skills.forEach(s => {
-        const el = document.createElement('span');
-        el.className = 'skill-tag';
-        el.textContent = s;
-        grid.appendChild(el);
-    });
-
-    // Featured projects data
-    const featured = [
-        {
-            title: 'Java Forum',
-            desc: 'Java-based forum to facilitate interactions between teachers, students, and admins.',
-            tags: ['Python', 'System'],
-            href: '/projects/forum.html',
-        },
-        {
-            title: 'GOOBI Analysis Tool',
-            desc: 'SEC analytics tool for parsing and calculating the "quality" of recent form 4 insider trading transactions.',
-            tags: ['Python', 'Finance', 'Data Management'],
-            href: '/projects/goobi.html',
-        },
-        {
-            title: 'Flight Manager',
-            desc: 'A collection of flight‑management tools built to explore how different data structures impact performance and design.',
-            tags: ['C++', 'Tools', 'Data Structures'],
-            href: '/projects/flight-manager.html',
-        },
-    ];
-
-    const fgrid = document.getElementById('featured-grid');
-    featured.forEach(p => {
-        fgrid.innerHTML += `
-      <div class="project-card">
-        <h3>${p.title}</h3>
-        <p>${p.desc}</p>
-        <div class="project-meta">
-          <div class="project-tags">
-            ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
-          </div>
-          <a class="project-link" href="${p.href}">view →</a>
-        </div>
-      </div>`;
-    });
 </script>
 </body>
 </html>
