@@ -160,7 +160,7 @@ h3 { font-size: 1.1rem; font-weight: 500; }
 p  { color: #3d3b35; }
 
 /* Hero */
-.hero { padding: 6rem 0 4rem; border-bottom: 1px solid var(--border); }
+.hero { padding: 0 0 4rem; border-bottom: 1px solid var(--border); }
 .hero .label { margin-bottom: 1.5rem; }
 .hero h1 { max-width: 14ch; margin-bottom: 1.5rem; }
 .hero-sub {
