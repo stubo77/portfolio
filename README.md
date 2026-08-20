@@ -1,22 +1,27 @@
 # Portfolio — Cloudflare Pages
 
-Clean & minimal software portfolio
+Clean, minimal software portfolio with login-gated case studies.
+
 ## Project structure
 
 ```
 portfolio/
-├── public/                 ← Static site
+├── public/                 ← Static site (HTML/CSS/JS)
 │   ├── css/style.css       ← All styles
-│   ├── js/theme.js         ← Theme toggle + toast helpers
+│   ├── js/auth.js          ← Client-side auth helpers
 │   ├── index.html          ← Home page
 │   ├── projects.html       ← Projects listing
 │   ├── about.html          ← About / contact
-│   ├── 404.html            ← Custom not-found page
+│   ├── login.html          ← Sign in / register
 │   └── projects/
-│       ├── converter.html         ← Binary converter project page
-│       ├── flight-manager.html    ← Flight management project page
-│       ├── forum.html             ← Forum project page
-│       ├── goobi.html             ← GOOBI project page
-│       └── microprocessor.html    ← Microprocessor project page
+│       ├── kv-store.html   ← Locked case study (example)
+│       └── cli-toolkit.html← Public case study (example)
+├── functions/
+│   └── api/
+│       ├── auth/
+│       │   ├── login.js    ← POST /api/auth/login
+│       │   └── register.js ← POST /api/auth/register
+│       └── _utils/
+│           └── crypto.js   ← JWT + PBKDF2 helpers (Web Crypto API)
 └── wrangler.toml
 ```
