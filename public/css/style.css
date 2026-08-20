@@ -145,7 +145,6 @@ body { transition: background-color .25s ease; }
   margin: 0 auto;
   padding: 4rem 2rem 6rem;
 }
-.page-sm { max-width: 560px; }
 
 /* Typography */
 .label {
@@ -303,8 +302,6 @@ p  { color: #3d3b35; }
 .sidebar-item .label { font-size: .65rem; }
 .sidebar-item span { font-size: .8rem; font-family: var(--mono), monospace; }
 
-.btn-full { width: 100%; justify-content: center; }
-
 /* Contact / About */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
 .about-bio p { margin-bottom: 1rem; font-size: .95rem; }
@@ -377,13 +374,3 @@ footer {
   .nav-links a { display: none; }
   .page { padding: 2.5rem 1.25rem 4rem; }
 }
-
-/* Animations */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-up { animation: fadeUp .5s ease both; }
-.fade-up-2 { animation: fadeUp .5s .1s ease both; }
-.fade-up-3 { animation: fadeUp .5s .2s ease both; }
-.fade-up-4 { animation: fadeUp .5s .3s ease both; }
