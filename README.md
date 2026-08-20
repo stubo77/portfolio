@@ -6,7 +6,7 @@ Clean, minimal software portfolio with login-gated case studies.
 
 ```
 portfolio/
-├── public/                 ← Static site (HTML/CSS/JS)
+├── public/                 ← Static site
 │   ├── css/style.css       ← All styles
 │   ├── js/auth.js          ← Client-side auth helpers
 │   ├── index.html          ← Home page
@@ -14,8 +14,12 @@ portfolio/
 │   ├── about.html          ← About / contact
 │   ├── login.html          ← Sign in / register
 │   └── projects/
-│       ├── kv-store.html   ← Locked case study (example)
-│       └── cli-toolkit.html← Public case study (example)
+│       ├── converter.html         ← Binary converter project page
+│       ├── flight-manager.html    ← Flight managment project page
+│       ├── forum.html             ← Forum project page
+│       ├── goobi.html             ← GOOBI project page
+│       └── microprocessor.html    ← Microprocessor project page
+
 ├── functions/
 │   └── api/
 │       ├── auth/
